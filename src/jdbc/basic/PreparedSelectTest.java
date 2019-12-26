@@ -26,7 +26,7 @@ public class PreparedSelectTest {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(url, user, password);
 			ptmt = con.prepareStatement(sql);
-			rs = ptmt.executeQuery(sql);
+			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				System.out.print(rs.getString(1) + "\t");
 				System.out.print(rs.getString(2) + "\t");

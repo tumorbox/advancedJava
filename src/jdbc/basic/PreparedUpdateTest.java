@@ -36,6 +36,7 @@ public class PreparedUpdateTest {
 			ptmt.setString(1, id);
 			ptmt.setInt(2, boardnum);
 			int result = ptmt.executeUpdate();
+			System.out.println("result: "+result);
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버로딩 실패");
