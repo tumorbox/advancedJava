@@ -7,9 +7,37 @@ public class MemberDTO {
 	private String pass;
 	private String name;
 	private String addr;
-	private int deptno;
+	private String deptno;
 	private Date hiredate;
 	private int point;
+	public MemberDTO() {
+		
+	}
+	
+	public MemberDTO(String id, String pass, String name, String addr, String deptno) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.addr = addr;
+		this.deptno = deptno;
+	}
+
+	public MemberDTO(String id, String pass, String name, String addr, String deptno, Date hiredate, int point) {
+		super();
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.addr = addr;
+		this.deptno = deptno;
+		this.hiredate = hiredate;
+		this.point = point;
+	}
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", name=" + name + ", addr=" + addr + ", deptno=" + deptno
+				+ ", hiredate=" + hiredate + ", point=" + point + "]";
+	}
 	public String getId() {
 		return id;
 	}
@@ -34,10 +62,10 @@ public class MemberDTO {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public int getDeptno() {
+	public String getDeptno() {
 		return deptno;
 	}
-	public void setDeptno(int deptno) {
+	public void setDeptno(String deptno) {
 		this.deptno = deptno;
 	}
 	public Date getHiredate() {
@@ -53,29 +81,4 @@ public class MemberDTO {
 		this.point = point;
 	}
 	
-	
-	//기본생성자
-	public MemberDTO() {
-	}
-	
-	//insert용
-	public MemberDTO(String id, String pass, String name, String addr, int deptno) {
-		super();
-		this.id = id;
-		this.pass = pass;
-		this.name = name;
-		this.addr = addr;
-		this.deptno = deptno;
-	}
-	
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", pass=" + pass + ", name=" + name + ", addr=" + addr + ", deptno=" + deptno
-				+ ", hiredate=" + hiredate + ", point=" + point + "]";
-	}
-	
-	
-	
-	
-
 }

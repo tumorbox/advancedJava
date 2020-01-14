@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UpdateTest {
-	public void Update() {
-		
-	}
 	public static void main(String[] args) {
 		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 		String user = "scott";

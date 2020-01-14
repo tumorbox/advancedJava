@@ -1,53 +1,54 @@
 package jdbc.basic;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class PreparedSelectTest {
 	public static void main(String[] args) {
-		PreparedSelectTest obj = new PreparedSelectTest();
-		System.out.println("***************게시글 확인****************");
-		obj.select();
+	 PreparedSelectTest obj = new PreparedSelectTest();
+	 obj.Select();
 	}
-	
-	public void select() {
-		String url = "jdbc:oracle:thin:@70.12.115.70:1521:xe";
+	public void Select() {
+		String url = "jdbc:oracle:thin:@70.12.115.50:1521:xe";
 		String user = "scott";
 		String password = "tiger";
+		String sql = "select * from tb_board";
 		Connection con = null;
-		PreparedStatement ptmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "select id,title,content from tb_board";
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(url, user, password);
-			ptmt = con.prepareStatement(sql);
-			rs = ptmt.executeQuery();
-			while (rs.next()) {
-				System.out.print(rs.getString(1) + "\t");
-				System.out.print(rs.getString(2) + "\t");
-				System.out.println(rs.getString(3) + "\t");
-				System.out.println(rs.getString("content") + "\t");
+			//select문을 실행 
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {//=> 레코드를 조회하기 위해서는
+							  //   래코드가 한 개라도 반드시 커서를 이동시켜야 한다.
+				System.out.print(rs.getInt(1)+"\t");
+				System.out.print(rs.getString(2)+"\t");
+				System.out.print(rs.getString(3)+"\t");
+				System.out.print(rs.getString("content")+"\t");
+				System.out.print(rs.getDate(5)+"\t");
+				System.out.println(rs.getInt(6)+"\t");
 			}
-		} catch (ClassNotFoundException e) {
+		}catch(ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
+		}catch(SQLException e) {
 			e.printStackTrace();
-		} finally { // exception이 발생하지 않거나 발생하거나 무조건 실행할 명령문을 정의
+		}finally {
 			try {
-				if (rs != null)
-					rs.close();
-				if (ptmt != null)
-					ptmt.close();
-				if (con != null)
-					con.close();
-			} catch (SQLException e) {
+				if(stmt!=null)stmt.close();
+				if(con!=null)con.close();
+				if(rs!=null)rs.close();
+			}catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
+
 }
